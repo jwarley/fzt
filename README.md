@@ -1,6 +1,6 @@
 # fzt
 
-Quickly switch between tabs using only the keyboard, by fuzzy-searching over the tabs' title text, analogous to what [fzf](https://github.com/junegunn/fzf) provides for files.
+Quickly switch between tabs using only the keyboard by fuzzy-searching over the tabs' title text, analogous to what [fzf](https://github.com/junegunn/fzf) provides for files.
 Default shortcut: Ctrl + e
 
 ## Match semantics
