@@ -1,0 +1,31 @@
+{
+
+  "manifest_version": 2,
+  "name": "fzt",
+  "version": "0.1",
+
+  "description": "Use fuzzy search to quickly switch between tabs.",
+  "homepage_url": "https://github.com/jwarley",
+  "icons": {
+    "48": "icons/oh_my.png"
+  },
+
+  "permissions": [
+    "activeTab", "tabs"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/oh_my.png",
+    "default_title": "fzt",
+    "default_popup": "popup/fzt.html"
+  },
+
+  "web_accessible_resources": [],
+
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": { "default": "Ctrl+E" },
+      "description": "Log the open tabs in this window to the console."
+    }
+  }
+}
