@@ -10,9 +10,7 @@
     "48": "icons/oh_my.png"
   },
 
-  "permissions": [
-    "activeTab", "tabs"
-  ],
+  "permissions": ["tabs"],
 
   "browser_action": {
     "default_icon": "icons/oh_my.png",

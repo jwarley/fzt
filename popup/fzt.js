@@ -83,7 +83,7 @@ function populate_title_list(tabs) {
     let tab_ul = document.getElementById("tab_list");
     tab_ul.innerHTML = "";
 
-    const search_str = document.getElementById("target_tab_text").value;
+    const search_str = document.getElementById("main_text_field").value;
     let results = subseq_filter(search_str, tabs, "title");
 
     for (let i = 0; i < results.length; i++) {
@@ -92,8 +92,15 @@ function populate_title_list(tabs) {
         // TODO: optimize out this find_subseq call
         const highlighted_desc = to_highlighted(tab_desc, find_subseq(search_str, tab_desc.toLowerCase()).matches);
 
+        // create a DOM element for the ith search result
         let li = document.createElement("li");
         li.appendChild(highlighted_desc);
+
+        // shade the first result
+        if (i === 0) {
+            li.className += "will_open";
+        }
+
         tab_ul.appendChild(li);
     };
 
@@ -101,7 +108,6 @@ function populate_title_list(tabs) {
 }
 
 function select_tab(tab_id) {
-    console.log("Selecting tab");
     browser.tabs.update(tab_id, {active: true});
     window.close();
 }
@@ -110,10 +116,17 @@ function init() {
     let best_tab = undefined;
     browser.tabs.query({currentWindow: true}, (tabs) => {
         best_tab = populate_title_list(tabs);
-        document.getElementById("target_tab_text").oninput = () => {
+        document.getElementById("main_text_field").oninput = () => {
             best_tab = populate_title_list(tabs);
         }
     });
+
+    // let selected_tab = 0;
+    // document.addEventListener("keyup", (ev) => {
+    //     if (ev.key === "Tab") {
+    //         console.log("Heloloooooo");
+    //     }
+    // });
 
     document.getElementById("tab_select_form").onsubmit = () => select_tab(best_tab);
 }

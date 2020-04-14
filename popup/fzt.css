@@ -1,8 +1,30 @@
-html* {
-    width: 500px;
+:root {
+  --max-popup-width: 800px;
+  --match-highlight-color: purple;
+  --selected-result-highlight-color: lightgray;
+}
+
+body {
+    width: var(--max-popup-width);
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .highlight {
-    color: purple;
+    color: var(--match-highlight-color);
     font-weight: bold;
+}
+
+.will_open {
+    background-color: var(--selected-result-highlight-color);
+}
+
+#text_form_submit {
+    display: none;
+}
+
+#tab_list {
+    list-style-type: none;
+    /* margin-left: 1em; */
+    padding-left: 1em;
 }

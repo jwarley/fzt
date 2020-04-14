@@ -4,26 +4,30 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="fzt.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
   </head>
 
-<body>
-  <div id="popup-content">
-    <form action="" method="get" id="tab_select_form" autocomplete="off">
-      <div>
-        <label for="target_tab">switch to: </label>
-        <input type="text" name="target_tab" id="target_tab_text" autofocus>
-        <input type="submit" value="Go!">
-      </div>
-    </form>
-  </div>
-  <div>
-    <ul id="tab_list">
-    </ul>
-  </div>
-  <!-- <div id="error-content" class="hidden"> -->
-  <!--   <p>I don't know.</p><p>what</p> -->
-  <!-- </div> -->
-  <script src="fzt.js"></script>
-</body>
+  <body>
+    <div id="popup-content">
+      <form action="" method="get" id="tab_select_form" autocomplete="off">
+        <div>
+          <input
+            type="text"
+            name="target_tab"
+            placeholder="Search a page title..."
+            id="main_text_field"
+            autofocus
+            class="input-reset bn b--black-20 pa2 ma2 db w-100"
+            >
+          <input type="submit" id="text_form_submit">
+        </div>
+      </form>
+    </div>
+    <div class="pa0">
+      <ul id="tab_list" class="">
+      </ul>
+    </div>
+    <script src="fzt.js"></script>
+  </body>
 
 </html>
