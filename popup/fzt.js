@@ -95,16 +95,17 @@ function populate_title_list(tabs) {
         // create a DOM element for the ith search result
         let li = document.createElement("li");
         li.appendChild(highlighted_desc);
+        li.id = "search_result_" + i.toString();
 
         // shade the first result
         if (i === 0) {
-            li.className += "will_open";
+            li.classList.add("will_open");
         }
 
         tab_ul.appendChild(li);
     };
 
-    return results[0].id;
+    return results;
 }
 
 function select_tab(tab_id) {
@@ -113,22 +114,28 @@ function select_tab(tab_id) {
 }
 
 function init() {
-    let best_tab = undefined;
+    let tab_list = undefined;
     browser.tabs.query({currentWindow: true}, (tabs) => {
-        best_tab = populate_title_list(tabs);
+        tab_list = populate_title_list(tabs);
         document.getElementById("main_text_field").oninput = () => {
-            best_tab = populate_title_list(tabs);
+            tab_list = populate_title_list(tabs);
         }
     });
 
-    // let selected_tab = 0;
-    // document.addEventListener("keyup", (ev) => {
-    //     if (ev.key === "Tab") {
-    //         console.log("Heloloooooo");
-    //     }
-    // });
+    let selected_result = 0;
+    document.addEventListener("keyup", (ev) => {
+        if (ev.key === "Tab") { // (Not that kind of Tab)
+            console.log(selected_result);
+            // unshade the previously selected search result and shade the newly selected result
+            document.getElementById("search_result_" + selected_result.toString()).classList.remove("will_open");
+            selected_result = (selected_result + 1) % tab_list.length;
+            document.getElementById("search_result_" + selected_result.toString()).classList.add("will_open");
+        } else if (ev.key === "Enter") {
+            select_tab(tab_list[selected_result].id);
+        }
+    });
 
-    document.getElementById("tab_select_form").onsubmit = () => select_tab(best_tab);
+    document.getElementById("tab_select_form").onsubmit = () => select_tab(tab_list[selected_result].id);
 }
 
 window.onload = init;
